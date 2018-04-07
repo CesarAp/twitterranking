@@ -13,7 +13,8 @@ client.get('statuses/home_timeline', params, function(error, tweets, response) {
   const result = [];
   if (!error) {
     tweets.forEach(tweet => {
-      result.push(tweet.user.name);
+      result.push(tweet.user.followers_count);
+      result.push(tweet.user.friends_count);
     });
     console.log(result)
   }

@@ -30,8 +30,27 @@ var client = new Twitter({
 const params = {screen_name: 'eCesarAparicio'};
 const urlLink = 'statuses/user_timeline';
 
-client.get(urlLink, params, function(error, tweets, response) {
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  const result = [];
   if (!error) {
-    console.log(tweets);
+    tweets.forEach(tweet => {
+    result.push(tweet.user.followers_count);
+    result.push(tweet.user.friends_count);
+      //result.push(tweet.retweeted_status.text);
+    });
+    console.log(result)
   }
 });
+
+/*
+var params = {screen_name: 'nodejs'};
+client.get('statuses/home_timeline', params, function(error, tweets, response) {
+  const result = [];
+  if (!error) {
+    tweets.forEach(tweet => {
+      result.push(tweet.user.name);
+    });
+    console.log(result)
+  }
+});
+*/
