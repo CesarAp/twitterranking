@@ -1,3 +1,5 @@
+//Creo que tampoco lo voy a necesitar en este archivo sino en el de myFollowers
+
 var Twitter = require('twitter');
 require('dotenv').config();
 
@@ -13,6 +15,7 @@ client.get('statuses/home_timeline', params, function(error, tweets, response) {
   const result = [];
   if (!error) {
     tweets.forEach(tweet => {
+//Estos son los seguidores que tiene la cuenta y a los que la cuenta sigue
       result.push(tweet.user.followers_count);
       result.push(tweet.user.friends_count);
     });

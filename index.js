@@ -27,7 +27,7 @@ var client = new Twitter({
   access_token_secret: process.env.access_token_secret
 });
 // El user está hardcodeado para comprobar
-const params = {screen_name: 'eCesarAparicio'};
+const params = {screen_name: '@SEOprevilegiado'};
 const urlLink = 'statuses/user_timeline';
 
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
