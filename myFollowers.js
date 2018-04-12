@@ -28,7 +28,7 @@ client.get('followers/ids', params)
 // }
 function getUserInfo(userId) {
   const params = {
-    user_id: userId
+    id_str: userId
   }
   return client.get('statuses/user_timeline', params)
 }
