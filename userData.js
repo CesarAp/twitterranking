@@ -8,7 +8,7 @@ const client = new Twitter({
   access_token_secret: process.env.access_token_secret
 });
 
-const params = {screen_name: '@SEOprevilegiado'};
+const params = {screen_name: 'ecesaraparicio'};
 
 const retrieveUserFollowers = () => (
   new Promise(resolve => (
@@ -65,13 +65,42 @@ async function retrieveUserData() {
       }
     ))
   ))
+  const filterItems = query => {
+    return followerDataWithTweets.filter(el =>
+    el.toLowerCase().indexOf(query.toLowerCase()) > -1
+  );
+  }
+  // console.log(filterItems('SEO'));
   return followerDataWithTweets
 };
 
-retrieveUserData()
-  .then(userData => {
-    console.log(userData)
-  })
-  .catch(error => {
-    console.log(error)
-  })
+// PARA SELECCIONAR KEYWORDS DEL ARRAY
+// var wordsString = userData.split(' ');
+// console.log(wordsString.length);
+// counter = 0;
+// for (var i = 0; i < wordsString.length; i++) {
+//  if (wordsString[i] === 'de') {
+//    counter++;
+//  }
+// }
+//AQUI QUÉ PASA
+// console.log(counter);
+// var results = [];
+// var element = 'SEO';
+// var idx = followersData.indexOf(user.screen_name);
+// while (idx != -1) {
+//   results.push(idx);
+//   idx = followersData.indexOf(element, idx + 1);
+// }
+// console.log(results);
+// var followerDataWithTweets
+// console.log(followerDataWithTweets.indexOf(SEO));
+
+
+  retrieveUserData()
+    .then(userData => {
+      console.log(userData)
+    })
+    .catch(error => {
+      console.log(error)
+    })

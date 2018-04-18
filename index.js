@@ -27,20 +27,34 @@ var client = new Twitter({
   access_token_secret: process.env.access_token_secret
 });
 // El user está hardcodeado para comprobar
-const params = {screen_name: '@SEOprevilegiado'};
+const params = {screen_name: '@ecesaraparicio'};
 const urlLink = 'statuses/user_timeline';
 
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
   const result = [];
   if (!error) {
     tweets.forEach(tweet => {
-    result.push(tweet.user.followers_count);
     result.push(tweet.user.friends_count);
+    result.push(tweet.user.followers_count);
+
       //result.push(tweet.retweeted_status.text);
     });
     console.log(result)
   }
 });
+
+// const params = {screen_name: '@ecesaraparicio'};
+// const urlLink = 'statuses/user_timeline';
+//
+// client.get('statuses/user_timeline', params, function(error, tweets, response) {
+//   const result = [];
+//   if (!error) {
+//     tweets.forEach(tweet => {
+//     result.push(tweet.user.friends_count);
+//     result.push(tweet.user.followers_count);
+//     var cosa = tweet.user.description;
+//     var wordsString = cosa.indexOf("broker");
+//     console.log(wordsString);
 
 /*
 var params = {screen_name: 'nodejs'};
