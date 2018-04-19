@@ -1,5 +1,6 @@
 const Twitter = require('twitter');
 require('dotenv').config();
+var petitionCounter = 0;
 
 const client = new Twitter({
     consumer_key: process.env.consumer_key,
@@ -14,6 +15,7 @@ const retrieveUserFollowers = usr => (
             'followers/list',
             {screen_name: usr},
             (error, followers, response) => {
+                petitionCounter++;
                 if (!error) {
                     const followersData = followers.users.map(user => (
                         {
@@ -40,6 +42,7 @@ const retrieveUserTweets = (screen_name) => (
             'statuses/user_timeline',
             { screen_name },
             (error, tweets, response) => {
+              petitionCounter++;
                 if (!error) {
                     const userTweets = tweets.map(tweet => tweet.text)
                     resolve(userTweets);
@@ -90,7 +93,7 @@ async function retrieveUserData(usr) {
 // console.log(followerDataWithTweets.indexOf(SEO));
 
 
-var usuario = 'ecesaraparicio'
+var usuario = 'seoprevilegiado'
 //var usuario = 'sicodeandres '
 retrieveUserData(usuario)
     .then(userData => {
@@ -129,9 +132,11 @@ retrieveUserData(usuario)
                 });
                 var score_total = sum_scores/v.length * myscore
                 console.log("Score total del usuario "+usuario+": "+score_total);
+                console.log(petitionCounter)
             })
         } else {
             console.log("No hay datos del usuario "+usuario)
+            console.log(petitionCounter)
         }
     }
     )
